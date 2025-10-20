@@ -7,5 +7,13 @@ import {
 } from 'next-themes'
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+  // Provide deterministic defaults to avoid SSR/CSR mismatches.
+  const providerProps: ThemeProviderProps = {
+    attribute: props.attribute ?? 'class',
+    defaultTheme: (props as any).defaultTheme ?? 'light',
+    enableSystem: (props as any).enableSystem ?? false,
+    ...props,
+  }
+
+  return <NextThemesProvider {...providerProps}>{children}</NextThemesProvider>
 }

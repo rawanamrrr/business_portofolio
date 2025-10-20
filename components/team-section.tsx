@@ -1,31 +1,15 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Linkedin, Github, Mail } from "lucide-react"
+import { Linkedin, Github, Mail, Sparkles } from "lucide-react"
+import { useSmartReveal } from "@/hooks/use-smart-reveal"
+import { useI18n } from "@/components/locale-provider"
 
 export function TeamSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.2 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  const isVisible = useSmartReveal({ delay: 200, maxJitter: 240 })
+  const { t } = useI18n()
 
   const team = [
     {
@@ -55,91 +39,91 @@ export function TeamSection() {
   ]
 
   return (
-    <section id="team" ref={sectionRef} className="py-20">
-      <div className="container mx-auto px-4">
-        <div className={`transition-all duration-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 text-sm px-4 py-2">
-              Our Team
-            </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Meet the Founders
-              <span className="gradient-text-impressive block">Building the Future</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We're a fresh team of passionate creators with AI expertise, ready to bring your digital vision to life
-              with innovation and dedication.
-            </p>
-          </div>
+    <section id="team" className="relative overflow-hidden py-28">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-muted/25 to-transparent dark:from-[#050b1d] dark:via-[#020511] dark:to-transparent" />
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-16 px-6">
+        <div className={`flex flex-col items-center gap-6 text-center ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <Badge className="tagline-pill border border-border/60 bg-white/80 text-accent-foreground dark:border-white/10 dark:bg-accent/20">
+            {t('team.badge')}
+          </Badge>
+          <h2 className="section-title text-foreground md:text-[3.25rem]">
+            {t('team.h2')}
+          </h2>
+          <p className="section-subtitle text-muted-foreground/85">{t('team.p')}</p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {team.map((member, index) => (
-              <Card
-                key={index}
-                className={`group overflow-hidden border-0 bg-card hover-lift transition-all duration-500 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="relative overflow-hidden h-80 p-4">
-                  <div className="relative w-full h-full">
-                    <div className="absolute inset-4 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 group-hover:animate-bounce group-hover:scale-105 transition-all duration-300">
-                      <img
-                        src={member.image || "/placeholder.svg"}
-                        alt={member.name}
-                        className="w-full h-full object-cover object-center transition-all duration-500"
-                      />
-                    </div>
-
-                    <div className="absolute inset-0 overflow-visible opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      {[...Array(8)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="absolute w-2 h-2 bg-white rounded-full animate-float"
-                          style={{
-                            left: `${20 + Math.cos((i * Math.PI * 2) / 8) * 40}%`,
-                            top: `${20 + Math.sin((i * Math.PI * 2) / 8) * 40}%`,
-                            animationDelay: `${i * 0.2}s`,
-                            animationDuration: `${2 + Math.random()}s`,
-                          }}
-                        />
-                      ))}
-                    </div>
-
-                    <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                      <div className="flex gap-3 justify-center">
-                        <Button
-                          size="icon"
-                          variant="secondary"
-                          className="w-10 h-10 social-connect backdrop-blur-sm bg-white/20 hover:bg-white/30 border-white/30"
-                        >
-                          <Linkedin className="w-5 h-5" />
-                        </Button>
-                        <Button
-                          size="icon"
-                          variant="secondary"
-                          className="w-10 h-10 social-connect backdrop-blur-sm bg-white/20 hover:bg-white/30 border-white/30"
-                        >
-                          <Github className="w-5 h-5" />
-                        </Button>
-                        <Button
-                          size="icon"
-                          variant="secondary"
-                          className="w-10 h-10 social-connect backdrop-blur-sm bg-white/20 hover:bg-white/30 border-white/30"
-                        >
-                          <Mail className="w-5 h-5" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+        <div className={`grid gap-8 md:grid-cols-3 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`} style={{ animationDelay: "0.2s" }}>
+          {team.map((member, index) => (
+            <Card
+              key={member.name}
+              className="glass-panel glow-border group flex h-full flex-col overflow-hidden rounded-[2.25rem] border border-border/50 bg-white/85 backdrop-blur-md dark:border-white/10 dark:bg-white/5"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <div className="relative flex h-80 items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/20 to-transparent dark:from-white/10 dark:via-white/5" />
+                <div className="relative h-64 w-64 overflow-hidden rounded-full border border-border/50 dark:border-white/15">
+                  <img
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
                 </div>
-
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-accent font-medium mb-3">{member.role}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                <div className="absolute bottom-6 flex w-full justify-center gap-3">
+                  {[
+                    { type: 'linkedin', url: member.social.linkedin },
+                    { type: 'github', url: member.social.github },
+                    { type: 'email', url: member.social.email }
+                  ].map(({ type, url }, idx) => {
+                    const icons = [Linkedin, Github, Mail]
+                    const Icon = icons[idx]
+                    return (
+                      <Button
+                        key={`${member.name}-${type}`}
+                        size="icon"
+                        variant="secondary"
+                        className="h-11 w-11 rounded-full border border-border/40 bg-white/80 text-muted-foreground backdrop-blur transition hover:bg-white dark:border-white/20 dark:bg-white/10 dark:text-white/80"
+                        onClick={() => {
+                          if (!url || url === "#") return
+                          if (type === 'email') {
+                            window.location.href = `mailto:${url}`
+                            return
+                          }
+                          window.open(url, "_blank")
+                        }}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </Button>
+                    )
+                  })}
+                </div>
+              </div>
+              <CardContent className="flex flex-1 flex-col gap-4 p-8 text-left">
+                <div className="flex items-center gap-3">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground/70">{t('team.founder_label')}</p>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
+                <p className="text-sm font-medium text-accent-foreground/90">{
+                  t(
+                    member.name === "Hana Rabeea"
+                      ? 'team.member.hana.role'
+                      : member.name === "Rawan Amr"
+                        ? 'team.member.rawan.role'
+                        : 'team.member.zeyad.role'
+                  )
+                }</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{
+                  t(
+                    member.name === "Hana Rabeea"
+                      ? 'team.member.hana.bio'
+                      : member.name === "Rawan Amr"
+                        ? 'team.member.rawan.bio'
+                        : 'team.member.zeyad.bio'
+                  )
+                }</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

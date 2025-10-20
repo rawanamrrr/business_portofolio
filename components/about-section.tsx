@@ -1,90 +1,85 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { type CSSProperties } from "react"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Rocket, Users, Code, Sparkles } from "lucide-react"
+import { Rocket, Users, Compass, Cpu } from "lucide-react"
+import { useSmartReveal } from "@/hooks/use-smart-reveal"
+import { useI18n } from "@/components/locale-provider"
 
 export function AboutSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.3 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  const isVisible = useSmartReveal({ delay: 120, maxJitter: 140 })
+  const { t } = useI18n()
 
   const stats = [
-    { number: "100%", label: "Client Satisfaction", icon: Sparkles },
-    { number: "100%", label: "Passion & Dedication", icon: Rocket },
-    { number: "3", label: "Talented Founders", icon: Users },
-    { number: "Fresh", label: "Innovative Approach", icon: Code },
+    { number: "+46%", label: t('about.stats1.label'), icon: Rocket },
+    { number: "92", label: t('about.stats2.label'), icon: Users },
+    { number: "11", label: t('about.stats3.label'), icon: Compass },
+    { number: t('about.stats4.number'), label: t('about.stats4.label'), icon: Cpu },
   ]
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className={`transition-all duration-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="text-center mb-16">
-            <Badge variant="secondary" className="mb-4 text-sm px-4 py-2">
-              About Us
+    <section id="about" className="relative overflow-hidden py-28">
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-muted/25 to-transparent dark:from-[#070d1d] dark:via-[#030711] dark:to-transparent" />
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-16 px-6">
+        <div
+          className={`grid gap-10 lg:grid-cols-[1.1fr_0.9fr] ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
+          style={isVisible ? ({ "--fade-duration": "0.36s" } as CSSProperties) : undefined}
+        >
+          <div className="flex flex-col gap-8">
+            <Badge className="w-max rounded-full border border-border/60 bg-white/80 px-5 py-2 text-xs uppercase tracking-[0.35em] text-muted-foreground dark:border-white/10 dark:bg-white/5 dark:text-muted-foreground/80">
+              {t('about.badge')}
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Fresh Minds, Bold Ideas
-              <span className="gradient-text-impressive block">Just Getting Started</span>
+            <h2 className="text-4xl font-semibold text-foreground md:text-5xl">
+              <span className="gradient-text-premium block">{t('about.h2_part1')}</span>
+              {t('about.h2_part2')}
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We're a brand new company with fresh perspectives and unlimited passion. Though we're just starting our
-              journey, we bring innovative ideas and dedication to every project we touch.
+            <p className="section-subtitle text-left text-muted-foreground/90">
+              {t('about.p')}
             </p>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {stats.map((stat, index) => (
+                <Card
+                  key={stat.label}
+                  className="glass-panel glow-border animate-fade-in-up flex flex-col gap-3 rounded-3xl border border-border/60 bg-white/80 p-6 text-left backdrop-blur-md dark:border-white/10 dark:bg-white/5"
+                  style={{ animationDelay: `${index * 0.06}s`, "--fade-duration": "0.32s" } as CSSProperties}
+                >
+                  <stat.icon className="h-6 w-6 text-primary" />
+                  <span className="text-3xl font-semibold text-foreground">{stat.number}</span>
+                  <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">{stat.label}</span>
+                </Card>
+              ))}
+            </div>
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {stats.map((stat, index) => (
-              <Card
-                key={index}
-                className={`p-6 text-center hover-lift transition-all duration-500 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <stat.icon className="w-8 h-8 text-accent mx-auto mb-4" />
-                <div className="text-3xl font-bold gradient-text-impressive mb-2">{stat.number}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </Card>
-            ))}
-          </div>
-
-          <Card className="p-8 md:p-12 bg-gradient-to-r from-accent/5 to-secondary/5 border-accent/20 hover-lift">
-            <div className="text-center">
-              <h3 className="text-2xl md:text-3xl font-bold mb-6 gradient-text-impressive">Our Vision</h3>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto mb-6">
-                <span className="text-pretty">
-                  We envision a digital world where every brand has the power to tell their unique story through
-                  breathtaking design and flawless functionality. In a landscape dominated by the ordinary, we dare to
-                  be extraordinary. We believe that behind every pixel, every line of code, and every creative decision
-                  lies the potential to move hearts, change minds, and transform businesses.
-                </span>
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-                <span className="text-pretty">
-                  Though we're new to this journey, our dreams are boundless. We're not just building websites – we're
-                  crafting digital experiences that will make people stop, stare, and remember. Every project is our
-                  chance to prove that fresh perspectives and unwavering passion can create something truly magical.
-                  This is just the beginning of our story, and we can't wait to write it with you.
-                </span>
-              </p>
+          <Card
+            className="glass-panel glow-border animate-fade-in-up relative flex flex-col gap-6 overflow-hidden rounded-[2.5rem] border border-border/60 bg-white/85 p-10 backdrop-blur-md dark:border-white/10 dark:bg-white/5"
+            style={isVisible ? ({ animationDelay: "0.16s", "--fade-duration": "0.4s" } as CSSProperties) : undefined}
+          >
+            <div className="absolute -top-16 right-0 h-40 w-40 rounded-full bg-primary/15 blur-3xl dark:bg-primary/20" />
+            <div className="absolute -bottom-16 left-12 h-44 w-44 rounded-full bg-accent/15 blur-3xl dark:bg-accent/20" />
+            <div className="relative flex flex-col gap-5">
+              <div className="metric-chip w-max bg-white/10 text-xs text-primary">{t('about.metric_chip')}</div>
+              <h3 className="text-2xl font-semibold text-foreground md:text-3xl">{t('about.card.h3')}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground/80">{t('about.card.p')}</p>
+              <div className="grid gap-4">
+                {[
+                  t('about.card.list1'),
+                  t('about.card.list2'),
+                  t('about.card.list3'),
+                  t('about.card.list4')
+                ].map((item, index) => (
+                  <div
+                    key={`${item}-${index}`}
+                    className="animate-fade-in-up flex items-center gap-3 rounded-2xl border border-border/40 bg-white/70 px-4 py-3 text-sm text-muted-foreground dark:border-white/5 dark:bg-white/5"
+                    style={{ animationDelay: `${0.24 + index * 0.05}s`, "--fade-duration": "0.34s" } as CSSProperties}
+                  >
+                    <div className="h-2 w-2 rounded-full bg-primary" />
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </Card>
         </div>
