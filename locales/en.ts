@@ -173,6 +173,8 @@ const en = {
   'contact.social.facebook_desc': 'Follow our journey',
   'contact.social.instagram': 'Instagram',
   'contact.social.instagram_desc': 'See our creative work',
+  'contact.social.tiktok': 'TikTok',
+  'contact.social.tiktok_desc': 'Watch our creative content',
   'contact.footer.tagline': 'Where fresh ideas meet digital excellence.',
   // Connect
   'connect.badge': 'Connect',

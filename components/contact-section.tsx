@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Mail, Linkedin, Facebook, Instagram, Send, Sparkles } from "lucide-react"
+import { TikTokIcon } from "@/components/icons/tiktok-icon"
 import { useSmartReveal } from "@/hooks/use-smart-reveal"
 import { useI18n } from "@/components/locale-provider"
 
@@ -81,9 +82,16 @@ export function ContactSection() {
     {
       icon: Instagram,
       label: t('contact.social.instagram'),
-      href: "https://instagram.com/digitiva",
+      href: "https://www.instagram.com/digitivaco?igsh=MXNteGgyZjIzenQwaQ==",
       color: "from-pink-500 to-purple-600",
       description: t('contact.social.instagram_desc'),
+    },
+    {
+      icon: TikTokIcon,
+      label: t('contact.social.tiktok'),
+      href: "https://www.tiktok.com/@digitivaco?_t=ZS-90iVO8hoyQq&_r=1",
+      color: "from-black to-gray-800",
+      description: t('contact.social.tiktok_desc'),
     },
   ]
 
@@ -230,7 +238,7 @@ export function ContactSection() {
                 <p className="text-muted-foreground">{t('contact.choose_preferred')}</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}

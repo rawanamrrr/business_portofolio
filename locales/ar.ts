@@ -173,6 +173,8 @@ const ar = {
   'contact.social.facebook_desc': 'تابع رحلتنا',
   'contact.social.instagram': 'إنستغرام',
   'contact.social.instagram_desc': 'اطّلع على أعمالنا الإبداعية',
+  'contact.social.tiktok': 'تيك توك',
+  'contact.social.tiktok_desc': 'شاهد محتوانا الإبداعي',
   'contact.footer.tagline': 'حيث تلتقي الأفكار الجديدة بروعة التنفيذ الرقمي.',
   // Connect
   'connect.badge': 'تواصل',
