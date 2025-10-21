@@ -14,7 +14,7 @@ export function AboutSection() {
   const stats = [
     { number: "+46%", label: t('about.stats1.label'), icon: Rocket },
     { number: "92", label: t('about.stats2.label'), icon: Users },
-    { number: "11", label: t('about.stats3.label'), icon: Compass },
+    { number: "3", label: t('about.stats3.label'), icon: Compass },
     { number: t('about.stats4.number'), label: t('about.stats4.label'), icon: Cpu },
   ]
 

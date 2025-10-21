@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Linkedin, Github, Mail, Sparkles } from "lucide-react"
+import { Linkedin, Mail, Sparkles } from "lucide-react"
 import { useSmartReveal } from "@/hooks/use-smart-reveal"
 import { useI18n } from "@/components/locale-provider"
 
@@ -18,7 +18,7 @@ export function TeamSection() {
       bio: "A visionary developer with an extraordinary eye for detail and user experience. Hana transforms complex ideas into elegant digital solutions that captivate and inspire. Her fresh perspective from AI studies brings innovative approaches to every project.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wgPDX174t0hNIRf2YJZF4qyK18qz9N.png",
       color: "from-purple-500 via-pink-500 to-purple-600",
-      social: { linkedin: "#", github: "#", email: "hana@digitiva.com" },
+      social: { linkedin: "https://www.linkedin.com/in/hana-rabeea-771619240?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", email: "hanarabeea707@gmail.com" },
     },
     {
       name: "Rawan Amr",
@@ -26,15 +26,15 @@ export function TeamSection() {
       bio: "A creative powerhouse who breathes life into brands through stunning visual storytelling. Rawan's artistic genius combined with technical expertise creates unforgettable digital experiences that resonate deeply with audiences.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-P8ACw9w7bvaCFVS4LmNejIyrAzxILl.png",
       color: "from-blue-500 via-cyan-400 to-blue-600",
-      social: { linkedin: "#", github: "#", email: "rawan@digitiva.com" },
+      social: { linkedin: "https://www.linkedin.com/in/rawan-amr-a28b5624b", email: "rawanamr20002@icloud.com" },
     },
     {
-      name: "Zeyad Aboelennen",
+      name: "Zeyad Abo Eleneen",
       role: "Co-Founder & Developer",
       bio: "A brilliant architect of digital solutions with an unstoppable passion for innovation. Zeyad's expertise in cutting-edge technologies and AI-driven development pushes boundaries and delivers exceptional results that exceed expectations.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-FIPNpEwVYeH4ta5nBdV0nei3CRxhae.png",
       color: "from-green-500 via-emerald-400 to-green-600",
-      social: { linkedin: "#", github: "#", email: "zeyad@digitiva.com" },
+      social: { linkedin: "http://linkedin.com/in/zeyad-abo-eleneen-b636b6282", email: "zeyad5zoks@gmail.com" },
     },
   ]
 
@@ -71,10 +71,9 @@ export function TeamSection() {
                 <div className="absolute bottom-6 flex w-full justify-center gap-3">
                   {[
                     { type: 'linkedin', url: member.social.linkedin },
-                    { type: 'github', url: member.social.github },
                     { type: 'email', url: member.social.email }
                   ].map(({ type, url }, idx) => {
-                    const icons = [Linkedin, Github, Mail]
+                    const icons = [Linkedin, Mail]
                     const Icon = icons[idx]
                     return (
                       <Button

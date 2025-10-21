@@ -4,7 +4,7 @@ import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Play, Sparkles } from "lucide-react"
+import { ExternalLink, Sparkles } from "lucide-react"
 import { useSmartReveal } from "@/hooks/use-smart-reveal"
 import { useI18n } from "@/components/locale-provider"
 
@@ -30,11 +30,16 @@ export function ProjectsSection() {
             <div className="absolute -left-12 top-10 h-48 w-48 rounded-full bg-primary/15 blur-3xl dark:bg-primary/25" />
             <div className="absolute -right-16 bottom-4 h-56 w-56 rounded-full bg-accent/15 blur-3xl dark:bg-accent/20" />
             <div className="relative">
-              <div className="relative flex h-80 w-full flex-col items-center justify-center gap-4 overflow-hidden bg-gradient-to-br from-primary/15 via-accent/15 to-muted/40 text-foreground md:h-[26rem] dark:from-primary/25 dark:via-accent/25 dark:to-background/60">
-                <div className="absolute inset-0 bg-white/20 dark:bg-black/20" />
-                <Play className="relative h-16 w-16 text-primary dark:text-white/75" />
-                <p className="relative text-base uppercase tracking-[0.45em] text-muted-foreground">{t('projects.hero_line1')}</p>
-                <p className="relative text-sm text-muted-foreground/80">{t('projects.hero_line2')}</p>
+              <div className="relative h-80 w-full overflow-hidden md:h-[26rem] bg-gradient-to-br from-primary/15 via-accent/15 to-muted/40 dark:from-primary/25 dark:via-accent/25 dark:to-background/60">
+                <video 
+                  className="h-full w-full object-contain"
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                >
+                  <source src="/sense-video.mp4" type="video/mp4" />
+                </video>
               </div>
 
               <div className="relative grid gap-6 p-10 md:grid-cols-[1.2fr_0.8fr]">
@@ -90,12 +95,6 @@ export function ProjectsSection() {
 
             
           </div>
-        </div>
-
-        <div className="flex flex-col items-center gap-3 rounded-full border border-border/60 bg-white/80 px-6 py-4 text-center text-sm text-muted-foreground sm:flex-row sm:justify-center dark:border-white/10 dark:bg-white/5">
-          <Sparkles className="h-4 w-4 text-primary" />
-          <span>{t('projects.bottom.text')}</span>
-          <Button className="ghost-button" onClick={() => window.open("mailto:digitivaa@gmail.com")}>{t('projects.bottom.cta')}</Button>
         </div>
       </div>
     </section>
