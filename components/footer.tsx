@@ -54,16 +54,13 @@ export function Footer() {
                   digitivaa@gmail.com
                 </a>
               </p>
-              <Link className="transition hover:text-primary" href="https://linkedin.com/company/digitiva" target="_blank" rel="noreferrer">
-                {t('contact.social.linkedin')}
-              </Link>
               <Link className="transition hover:text-primary" href="https://www.instagram.com/digitivaco?igsh=MXNteGgyZjIzenQwaQ==" target="_blank" rel="noreferrer">
                 {t('contact.social.instagram')}
               </Link>
               <Link className="transition hover:text-primary" href="https://www.tiktok.com/@digitivaco?_t=ZS-90iVO8hoyQq&_r=1" target="_blank" rel="noreferrer">
                 {t('contact.social.tiktok')}
               </Link>
-              <Link className="transition hover:text-primary" href="https://facebook.com" target="_blank" rel="noreferrer">
+              <Link className="transition hover:text-primary" href="https://www.facebook.com/share/17if8Q2zx4/?mibextid=wwXIfr" target="_blank" rel="noreferrer">
                 {t('contact.social.facebook')}
               </Link>
             </div>

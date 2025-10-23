@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Mail, Linkedin, Facebook, Instagram, Send, Sparkles } from "lucide-react"
+import { Mail, Facebook, Instagram, Send, Sparkles } from "lucide-react"
 import { TikTokIcon } from "@/components/icons/tiktok-icon"
 import { useSmartReveal } from "@/hooks/use-smart-reveal"
 import { useI18n } from "@/components/locale-provider"
@@ -66,16 +66,9 @@ export function ContactSection() {
       description: t('contact.social.email_desc'),
     },
     {
-      icon: Linkedin,
-      label: t('contact.social.linkedin'),
-      href: "https://linkedin.com/company/digitiva",
-      color: "from-blue-600 to-blue-700",
-      description: t('contact.social.linkedin_desc'),
-    },
-    {
       icon: Facebook,
       label: t('contact.social.facebook'),
-      href: "https://facebook.com/digitiva",
+      href: "https://www.facebook.com/share/17if8Q2zx4/?mibextid=wwXIfr",
       color: "from-blue-500 to-blue-600",
       description: t('contact.social.facebook_desc'),
     },

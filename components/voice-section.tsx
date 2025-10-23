@@ -14,6 +14,10 @@ export function VoicesSection() {
       quote: t('voices.item1.quote'),
       author: t('voices.item1.author'),
     },
+    {
+      quote: t('voices.item2.quote'),
+      author: t('voices.item2.author'),
+    },
   ]
 
   return (
