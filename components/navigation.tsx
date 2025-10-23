@@ -52,15 +52,14 @@ export function Navigation() {
       >
         <div className="flex items-center gap-4 py-3">
           <button
-            className="flex items-center gap-4 rounded-2xl bg-white px-4 py-2 text-left text-foreground shadow-sm transition hover:bg-white/95 dark:bg-white/5 dark:text-white"
+            className="flex items-center gap-4 rounded-2xl bg-transparent px-4 py-2 text-left text-foreground transition hover:bg-white/10 dark:hover:bg-white/5 dark:text-white"
             aria-label={t('nav.go_to_top')}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/10 shadow-lg shadow-primary/25">
-              <Image src="/digitiva-logo.png" alt="Digitiva" fill className="object-cover" priority />
+            <div className="relative h-12 w-12 overflow-visible rounded-2xl">
+              <Image src="/digitiva-logo.png" alt="Digitiva" fill className="object-contain scale-[2.6] dark:invert" priority />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="gradient-text-premium text-base font-semibold tracking-tight sm:text-xl">Digitiva</span>
               <span className="section-heading hidden text-[11px] tracking-[0.35em] text-muted-foreground/80 sm:inline">{t('nav.brand_subtagline')}</span>
             </div>
           </button>
