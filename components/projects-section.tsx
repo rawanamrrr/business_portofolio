@@ -143,7 +143,7 @@ export function ProjectsSection() {
                     </div>
                     <Button
                       className="primary-button justify-center"
-                      onClick={() => window.open("https://zeyadandrawan.netlify.app", "_blank")}
+                      onClick={() => window.open("https://zeyadandrawan.site", "_blank")}
                     >
                       {t('projects.engagement.button_visit')}
                       <ExternalLink className="h-4 w-4" />
