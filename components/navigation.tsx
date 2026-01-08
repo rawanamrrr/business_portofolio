@@ -55,7 +55,7 @@ export function Navigation() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <div className="relative h-12 w-12 overflow-visible rounded-2xl">
-              <Image src="/digitiva-logo.png" alt="Digitiva" fill className="object-contain scale-[4] dark:invert ml-6 mt-1" priority />
+              <Image src="/digitiva-logo.png" alt="Digitiva" fill className="object-contain scale-[4] ml-6 mt-1 dark:filter dark:invert" priority />
             </div>
           </button>
 
