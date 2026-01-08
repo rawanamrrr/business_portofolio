@@ -9,7 +9,6 @@ const en = {
   'toggle.language.en': 'EN',
   'toggle.language.ar': 'AR',
   'nav.tagline': 'Future Forward',
-  'nav.brand_subtagline': 'Strategy · Design · Engineering',
   'nav.go_to_top': 'Go to top',
   'nav.aria_toggle_theme': 'Toggle theme',
   'hero.headline_part1': 'Cutting-edge digital products',
