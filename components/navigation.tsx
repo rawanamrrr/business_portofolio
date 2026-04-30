@@ -13,12 +13,17 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const { t } = useI18n()
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    document.body.classList.toggle("dark-mode", resolvedTheme === "dark")
+  }, [mounted, resolvedTheme])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,8 +59,23 @@ export function Navigation() {
             aria-label={t('nav.go_to_top')}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <div className="relative h-12 w-12 overflow-visible rounded-2xl">
-              <Image src="/digitiva-logo.png" alt="Digitiva" fill className="object-contain scale-[4] ml-6 mt-1 dark:filter dark:invert" priority />
+            <div className="site-logo" aria-hidden="true">
+              <Image
+                src="/digitiva-logo.png"
+                alt="Digitiva"
+                width={140}
+                height={40}
+                className="logo logo-light"
+                priority
+              />
+              <Image
+                src="/dark.png"
+                alt="Digitiva"
+                width={140}
+                height={40}
+                className="logo logo-dark"
+                priority
+              />
             </div>
           </button>
 
